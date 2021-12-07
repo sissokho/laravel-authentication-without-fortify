@@ -1,1 +1,1 @@
-# Local Laravel development environment with docker
+# Laravel authentication process
