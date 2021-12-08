@@ -18,4 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::middleware(['guest'])
+    ->group(function () {
+        Route::get('/register', [RegisterController::class, 'create'])->name('register');
+        Route::post('/register', [RegisterController::class, 'store']);
+    });
+
+Route::view('/dashboard', 'dashboard')
+    ->middleware('auth')
+    ->name('dashboard');
