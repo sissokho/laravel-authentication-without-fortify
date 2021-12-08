@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['guest'])
-    ->group(function () {
-        Route::get('/register', [RegisterController::class, 'create'])->name('register');
-        Route::post('/register', [RegisterController::class, 'store']);
-    });
+Route::middleware(['guest'])->group(function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store']);
+
+    Route::get('/login', [LoginController::class, 'create'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->middleware('throttle:6, 1');
+});
 
 Route::get('email/verify', [EmailVerificationController::class, 'showNotice'])
     ->middleware('auth')
