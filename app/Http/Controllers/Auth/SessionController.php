@@ -26,4 +26,15 @@ class SessionController extends Controller
 
         return redirect()->intended(route('dashboard'));
     }
+
+    public function destroy()
+    {
+        auth()->logout();
+
+        session()->invalidate();
+
+        session()->regenerateToken();
+
+        return redirect()->route('home');
+    }
 }
