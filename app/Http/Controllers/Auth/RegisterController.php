@@ -24,7 +24,7 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        auth()->login($user);
 
         return redirect()->route('dashboard');
     }
