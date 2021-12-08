@@ -22,7 +22,7 @@ class EmailVerificationController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function send(Request $request)
+    public function send(Request $request): RedirectResponse
     {
         $request->user()->sendEmailVerificationNotification();
 
