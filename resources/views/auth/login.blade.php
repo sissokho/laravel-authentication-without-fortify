@@ -11,20 +11,10 @@
         @csrf
         <div class="space-y-6">
             <div class="flex flex-col">
-                <label for="email">Email address</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" class="border border-gray-200 bg-gray-100 text-gray-700 p-1 rounded-sm focus:outline-none focus:border-gray-300">
-
-                @error('email')
-                <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
-                @enderror
+                <x-form.input type="email" name="email" label="Email address" />
             </div>
             <div class="flex flex-col">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="border border-gray-200 bg-gray-100 text-gray-700 p-1 rounded-sm focus:outline-none focus:border-gray-300">
-
-                @error('password')
-                <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
-                @enderror
+                <x-form.input type="password" name="password" />
             </div>
         </div>
 
