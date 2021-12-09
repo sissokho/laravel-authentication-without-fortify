@@ -1,7 +1,7 @@
 <x-layout.app>
     <h1 class="text-center text-xl font-semibold mt-5">Change Password</h1>
 
-    <form action="#" method="POST" class="bg-white w-80 px-4 py-6 mt-5 mx-auto rounded-md shadow-md sm:w-96">
+    <form action="{{ route('password.update') }}" method="POST" class="bg-white w-80 px-4 py-6 mt-5 mx-auto rounded-md shadow-md sm:w-96">
         @csrf
         <input type="hidden" name="token" value="{{ $token }}">
         <div class="space-y-6">

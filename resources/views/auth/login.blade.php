@@ -1,6 +1,12 @@
 <x-layout.app>
     <h1 class="text-center text-xl font-semibold mt-5">Log In</h1>
 
+    @if (session('status'))
+        <div class="mt-4 mb-4 font-medium text-sm text-green-600 text-center">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <form action="{{ route('login') }}" method="POST" class="bg-white w-80 px-4 py-6 mt-5 rounded-md shadow-md sm:w-96">
         @csrf
         <div class="space-y-6">
