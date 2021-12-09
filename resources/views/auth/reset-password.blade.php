@@ -10,7 +10,7 @@
                 <input type="email" name="email" id="email" value="{{ old('email') }}" class="border border-gray-200 bg-gray-100 text-gray-700 p-1 rounded-sm focus:outline-none focus:border-gray-300">
 
                 @error('email')
-                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
                 @enderror
             </div>
             <div class="flex flex-col">
@@ -18,7 +18,7 @@
                 <input type="password" name="password" id="password" class="border border-gray-200 bg-gray-100 text-gray-700 p-1 rounded-sm focus:outline-none focus:border-gray-300">
 
                 @error('password')
-                    <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
+                <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
                 @enderror
             </div>
             <div class="flex flex-col">
@@ -27,6 +27,6 @@
             </div>
         </div>
 
-        <button type="submit" class="w-full bg-green-400 text-white py-2 mt-10 hover:bg-green-500 transition-colors">Change Password</button>
+        <x-form.submit>Change Password</x-form.submit>
     </form>
 </x-layout.app>

@@ -15,9 +15,9 @@
 <body class="bg-gray-100">
     <main class="flex flex-col justify-start items-center pt-10 min-h-screen">
         @if (session('status') === 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                A new email verification link has been emailed to you!
-            </div>
+        <div class="mb-4 font-medium text-sm text-green-600">
+            A new email verification link has been emailed to you!
+        </div>
         @endif
 
         <div class="bg-white text-center p-7 rounded-md">
@@ -29,7 +29,7 @@
             </p>
             <form action="{{ route('verification.send') }}" method="POST">
                 @csrf
-                <button type="submit" class="bg-green-400 text-white p-2 mt-4 rounded hover:bg-green-500">Resend verification Email</button>
+                <x-form.submit>Resend verification Email</x-form.submit>
             </form>
         </div>
     </main>
