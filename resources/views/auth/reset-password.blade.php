@@ -1,14 +1,9 @@
 <x-layout.app>
-    <h1 class="text-center text-xl font-semibold mt-5">Log In</h1>
+    <h1 class="text-center text-xl font-semibold mt-5">Change Password</h1>
 
-    @if (session('status'))
-        <div class="mt-4 mb-4 font-medium text-sm text-green-600 text-center">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    <form action="{{ route('login') }}" method="POST" class="bg-white w-80 px-4 py-6 mt-5 rounded-md shadow-md sm:w-96">
+    <form action="{{ route('password.update') }}" method="POST" class="bg-white w-80 px-4 py-6 mt-5 mx-auto rounded-md shadow-md sm:w-96">
         @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
         <div class="space-y-6">
             <div class="flex flex-col">
                 <label for="email">Email address</label>
@@ -19,17 +14,19 @@
                 @enderror
             </div>
             <div class="flex flex-col">
-                <label for="password">Password</label>
+                <label for="password">New Password</label>
                 <input type="password" name="password" id="password" class="border border-gray-200 bg-gray-100 text-gray-700 p-1 rounded-sm focus:outline-none focus:border-gray-300">
 
                 @error('password')
                     <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="flex flex-col">
+                <label for="password_confirmation">Confirm Password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="border border-gray-200 bg-gray-100 text-gray-700 p-1 rounded-sm focus:outline-none focus:border-gray-300">
+            </div>
         </div>
 
-        <button type="submit" class="w-full bg-green-400 text-white py-2 mt-10 hover:bg-green-500 transition-colors">Sign In</button>
-
-        <a href="{{ route('password.request') }}" class="block mt-3 text-green-600 hover:text-green-700">Forgot password ?</a>
+        <button type="submit" class="w-full bg-green-400 text-white py-2 mt-10 hover:bg-green-500 transition-colors">Change Password</button>
     </form>
 </x-layout.app>
