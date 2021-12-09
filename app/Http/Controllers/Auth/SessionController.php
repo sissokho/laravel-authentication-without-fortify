@@ -27,7 +27,7 @@ class SessionController extends Controller
         return redirect()->intended(route('dashboard'));
     }
 
-    public function destroy()
+    public function destroy(): RedirectResponse
     {
         auth()->logout();
 
