@@ -36,22 +36,19 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 });
 
-Route::post('/logout', [SessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
-Route::get('email/verify', [EmailVerificationController::class, 'showNotice'])
-    ->middleware('auth')
-    ->name('verification.notice');
+    Route::get('/email/verify', [EmailVerificationController::class, 'showNotice'])
+        ->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
+        ->middleware('signed')
+        ->name('verification.verify');
+    Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
 
-Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
-
-Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
-
-Route::view('/dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    Route::view('/dashboard', 'dashboard')
+        ->middleware('verified')
+        ->name('dashboard');
+});
